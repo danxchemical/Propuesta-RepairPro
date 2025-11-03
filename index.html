@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RepairPro - Catálogo Profesional de Servicios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-blue: #3b82f6;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(59, 130, 246, 0.2);
+            --text-gray: #9ca3af;
+            --text-light: #d1d5db;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 40px;
+            position: relative;
+        }
+        
+        /* PORTADA MEJORADA */
+        .cover-page {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1592286927505-25f428820dc8?w=1920&q=80') center/cover;
+            filter: brightness(0.3) blur(2px);
+            z-index: 0;
+        }
+        
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(26,26,46,0.85) 50%, rgba(15,52,96,0.8) 100%);
+            z-index: 1;
+        }
+        
+        .floating-devices {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+        }
+        
+        .floating-device {
+            position: absolute;
+            font-size: 120px;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .floating-device:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-device:nth-child(2) { top: 60%; right: 15%; animation-delay: 5s; }
+        .floating-device:nth-child(3) { bottom: 15%; left: 20%; animation-delay: 10s; }
+        .floating-device:nth-child(4) { top: 30%; right: 25%; animation-delay: 15s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1100px;
+        }
+        
+        .logo-container {
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .logo-cover {
+            font-size: 7rem;
+            font-weight: 900;
+            letter-spacing: -4px;
+            line-height: 1;
+            text-shadow: 0 0 80px rgba(59, 130, 246, 0.6), 0 0 40px rgba(59, 130, 246, 0.4);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .logo-cover::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+            box-shadow: 0 0 20px var(--primary-blue);
+        }
+        
+        .logo-repair {
+            color: #f3f4f6;
+            font-weight: 200;
+        }
+        
+        .logo-pro {
+            color: var(--primary-blue);
+            font-weight: 900;
+        }
+        
+        .cover-subtitle {
+            font-size: 2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-weight: 200;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+        }
+        
+        .cover-description {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 2;
+            font-weight: 300;
+        }
+        
+        .specialty-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 2px solid var(--primary-blue);
+            padding: 25px 50px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: 3px;
+            box-shadow: 0 0 60px rgba(59, 130, 246, 0.4), inset 0 0 30px rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .apple-icon {
+            font-size: 2rem;
+        }
+        
+        .location {
+            margin-top: 100px;
+            font-size: 1.1rem;
+            color: #6b7280;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        /* PRESENTACIÓN CON IMÁGENES */
+        .intro-page {
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        
+        .intro-content {
+            max-width: 1400px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fff 0%, var(--primary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 80px;
+            font-weight: 300;
+        }
+        
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+        
+        .intro-image {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .intro-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .intro-image:hover::after {
+            opacity: 1;
+        }
+        
+        .intro-text-block {
+            padding: 40px;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 80px;
+        }
+        
+        .value-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 25px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .value-card:hover::before {
+            left: 100%;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 30px 80px rgba(59, 130, 246, 0.3);
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .value-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+        }
+        
+        .value-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        
+        .value-description {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        /* CATEGORÍAS CON IMÁGENES PREMIUM */
+        .categories-page {
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+        
+        .categories-content {
+            max-width: 1400px;
+            width: 100%;
+        }
+        
+        .category-section {
+            margin-bottom: 120px;
+        }
+        
+        .category-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(0,0,0,0.3) 100%);
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .category-info {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .category-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.6));
+        }
+        
+        .category-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .category-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .category-image {
+            position: relative;
+            z-index: 2;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        }
+        
+        .category-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        
+        .category-image:hover img {
+            transform: scale(1.1) rotate(2deg);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+        
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.08), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 30px 80px rgba(59, 130, 246, 0.25);
+        }
+        
+        .service-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .service-content {
+            padding: 35px;
+        }
+        
+        .service-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .service-features li {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+        
+        .service-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .service-time {
+            font-size: 0.9rem;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .service-price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .price-from {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* GARANTÍAS MEJORADAS */
+        .warranty-page {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f3460 100%);
+            position: relative;
+        }
+        
+        .warranty-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=1920&q=80') center/cover;
+            filter: brightness(0.15) blur(3px);
+            z-index: 0;
+        }
+        
+        .warranty-content {
+            max-width: 1400px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .warranty-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+        
+        .warranty-card {
+            background: rgba(59, 130, 246, 0.08);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            padding: 50px;
+            border-radius: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .warranty-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .warranty-card:hover::before {
+            opacity: 1;
+        }
+        
+        .warranty-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 30px 80px rgba(59, 130, 246, 0.4);
+            border-color: var(--primary-blue);
+        }
+        
+        .warranty-icon {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.6));
+        }
+        
+        .warranty-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .warranty-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 2;
+            font-weight: 300;
+        }
+        
+        /* CONTACTO PREMIUM */
+        .contact-section {
+            margin-top: 80px;
+            padding: 80px 60px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 40px;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 100px rgba(59, 130, 246, 0.3);
+        }
+        
+        .contact-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .contact-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .contact-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+        }
+        
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+        }
+        
+        .contact-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+        
+        .contact-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            line-height: 1.6;
+        }
+        
+        .social-section {
+            margin-top: 60px;
+            padding-top: 50px;
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+            text-align: center;
+        }
+        
+        .social-title {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .social-icons span {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: grayscale(1);
+        }
+        
+        .social-icons span:hover {
+            transform: scale(1.2) rotate(5deg);
+            filter: grayscale(0) drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+        }
+        
+        /* PÁGINA FINAL */
+        .final-page {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .final-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1920&q=80') center/cover;
+            filter: brightness(0.25);
+            z-index: 0;
+        }
+        
+        .final-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            text-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .intro-grid { grid-template-columns: 1fr; }
+            .category-header { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .page { padding: 60px 20px; }
+            .logo-cover { font-size: 4rem; }
+            .section-title { font-size: 2.5rem; }
+            .category-title { font-size: 2.5rem; }
+            .values-grid { grid-template-columns: 1fr; }
+            .warranty-grid { grid-template-columns: 1fr; }
+            .contact-info { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+        
+        /* ANIMACIONES */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        /* SCROLL PROGRESS BAR */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), #60a5fa);
+            z-index: 9999;
+            box-shadow: 0 0 20px var(--primary-blue);
+        }
+
+a {
+  text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- PORTADA -->
+    <div class="page cover-page">
+        <div class="cover-bg-image"></div>
+        <div class="cover-overlay"></div>
+        <div class="floating-devices">
+            <div class="floating-device">📱</div>
+            <div class="floating-device">💻</div>
+            <div class="floating-device">⌚</div>
+            <div class="floating-device">📲</div>
+        </div>
+        
+        <div class="cover-content fade-in">
+            <div class="logo-container">
+                <div class="logo-cover">
+                    <span class="logo-repair">Repair</span><span class="logo-pro">Pro</span>
+                </div>
+            </div>
+            <div class="cover-subtitle">Catálogo de Servicios 2025</div>
+            <p class="cover-description">
+                Centro técnico especializado en reparación y mantenimiento de dispositivos Apple.
+                Combinamos tecnología de punta, experiencia certificada y garantía total en cada servicio.
+            </p>
+            <div class="specialty-badge">
+                <span class="apple-icon">🍎</span>
+                <span>ESPECIALISTAS CERTIFICADOS APPLE</span>
+            </div>
+            <div class="location">
+                📍 Barrancabermeja, Santander, Colombia
+            </div>
+        </div>
+    </div>
+
+    <!-- PRESENTACIÓN -->
+    <div class="page intro-page">
+        <div class="intro-content fade-in">
+            <h2 class="section-title">Quiénes Somos</h2>
+            <p class="section-subtitle">Expertos en el ecosistema Apple desde 2018</p>
+            
+            <div class="intro-grid">
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1621768216002-5ac171876625?w=800&q=80" alt="Técnico reparando iPhone">
+                </div>
+                <div class="intro-text-block">
+                    <p class="intro-text">
+                        En <strong>RepairPro</strong> somos más que un centro de reparaciones. Somos especialistas certificados 
+                        en el ecosistema Apple con años de experiencia devolviendo la vida útil a dispositivos de alta gama.
+                    </p>
+                    <p class="intro-text">
+                        Utilizamos tecnología de microsoldadura de última generación, herramientas especializadas y repuestos 
+                        de primera calidad. Cada reparación es ejecutada siguiendo los más altos estándares técnicos internacionales.
+                    </p>
+                    <p class="intro-text">
+                        Nos sentimos orgullosamente colombianos y agradecidos con cada cliente que confía en nosotros. 
+                        Tu satisfacción es nuestra mejor carta de presentación.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <div class="value-title">Rapidez</div>
+                    <p class="value-description">
+                        Diagnóstico inmediato y reparaciones express. El 80% de servicios se completan el mismo día.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🛡️</div>
+                    <div class="value-title">Garantía</div>
+                    <p class="value-description">
+                        Garantía escrita de 30 a 90 días. Tu inversión está 100% protegida con respaldo técnico.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <div class="value-title">Precisión</div>
+                    <p class="value-description">
+                        Técnicos certificados con equipo especializado para reparaciones de alta complejidad.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💎</div>
+                    <div class="value-title">Calidad Premium</div>
+                    <p class="value-description">
+                        Repuestos originales y AAA+. Solo trabajamos con componentes de máxima calidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATÁLOGO: iPHONE -->
+    <div class="page categories-page">
+        <div class="categories-content">
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-info">
+                        <div class="category-icon">📱</div>
+                        <h2 class="category-title">Servicios iPhone</h2>
+                        <p class="category-description">
+                            Reparaciones especializadas para todos los modelos de iPhone, desde iPhone X hasta iPhone 15 Pro Max. 
+                            Utilizamos pantallas OLED originales y baterías certificadas con tecnología de última generación.
+                        </p>
+                    </div>
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&q=80" alt="iPhone reparación">
+                    </div>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1604671801908-6f0c6a092c05?w=600&q=80" alt="Cambio pantalla iPhone" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Cambio de Pantalla LCD/OLED</h3>
+                            <p class="service-description">
+                                Reemplazo de display completo con tecnología original OLED o LCD según modelo.
+                            </p>
+                            <ul class="service-features">
+                                <li>Pantalla original o premium AAA+</li>
+                                <li>Calibración de touch 3D/Haptic</li>
+                                <li>Pruebas de funcionamiento completas</li>
+                                <li>Garantía de 90 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1-2 horas</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $280K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80" alt="Batería iPhone" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reemplazo de Batería</h3>
+                            <p class="service-description">
+                                Instalación de batería de alta capacidad certificada para recuperar autonomía completa.
+                            </p>
+                            <ul class="service-features">
+                                <li>Baterías certificadas de 2200-4000mAh</li>
+                                <li>Recalibración del sistema iOS</li>
+                                <li>Prueba de carga rápida</li>
+                                <li>Garantía de 60 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 30-45 min</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $120K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&q=80" alt="Cámara iPhone" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Cambio de Cámara</h3>
+                            <p class="service-description">
+                                Sustitución de cámara frontal o trasera (principal, ultra gran angular, teleobjetivo).
+                            </p>
+                            <ul class="service-features">
+                                <li>Cámaras originales Apple</li>
+                                <li>Calibración de enfoque automático</li>
+                                <li>Prueba de estabilización óptica</li>
+                                <li>Garantía de 60 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1 hora</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $180K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=600&q=80" alt="Puerto Lightning iPhone" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reparación Puerto Lightning/USB-C</h3>
+                            <p class="service-description">
+                                Solución definitiva a problemas de carga con limpieza profunda o reemplazo.
+                            </p>
+                            <ul class="service-features">
+                                <li>Limpieza ultrasónica especializada</li>
+                                <li>Reemplazo con soldadura de precisión</li>
+                                <li>Prueba de transferencia de datos</li>
+                                <li>Garantía de 30 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1-2 horas</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $90K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&q=80" alt="Daño líquido iPhone" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reparación por Daño Líquido</h3>
+                            <p class="service-description">
+                                Limpieza especializada y recuperación de dispositivos con contacto líquido.
+                            </p>
+                            <ul class="service-features">
+                                <li>Limpieza ultrasónica inmediata</li>
+                                <li>Tratamiento anti-corrosión</li>
+                                <li>Recuperación de componentes</li>
+                                <li>Diagnóstico sin cargo inicial</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 2-3 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $200K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1621768216002-5ac171876625?w=600&q=80" alt="Placa lógica iPhone" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reparación Placa Lógica</h3>
+                            <p class="service-description">
+                                Microsoldadura avanzada de chips, recuperación de pistas y reballing profesional.
+                            </p>
+                            <ul class="service-features">
+                                <li>Microscopio profesional 400x</li>
+                                <li>Estación de reballing BGA</li>
+                                <li>Recuperación de datos incluida</li>
+                                <li>Garantía de 30 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 3-5 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $350K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATÁLOGO: iPAD -->
+    <div class="page categories-page">
+        <div class="categories-content">
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&q=80" alt="iPad reparación">
+                    </div>
+                    <div class="category-info">
+                        <div class="category-icon">📲</div>
+                        <h2 class="category-title">Servicios iPad</h2>
+                        <p class="category-description">
+                            Atendemos todos los modelos de iPad: Air, Pro, Mini y versiones estándar. 
+                            Expertos en laminado de pantallas Retina y reparaciones de alta precisión.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1585789575647-f8d16f6bb3a2?w=600&q=80" alt="Pantalla iPad" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Cambio de Pantalla Táctil</h3>
+                            <p class="service-description">
+                                Reemplazo de digitalizador o LCD con laminado profesional OCA.
+                            </p>
+                            <ul class="service-features">
+                                <li>Pantallas Retina originales</li>
+                                <li>Laminado OCA sin burbujas</li>
+                                <li>Sellado hermético UV</li>
+                                <li>Garantía de 90 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 2-3 horas</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $380K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?w=600&q=80" alt="Batería iPad" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reemplazo de Batería</h3>
+                            <p class="service-description">
+                                Instalación de batería de larga duración para recuperar autonomía completa.
+                            </p>
+                            <ul class="service-features">
+                                <li>Baterías 6000-10000mAh</li>
+                                <li>Adhesivo térmico premium</li>
+                                <li>Calibración del sistema iPadOS</li>
+                                <li>Garantía de 60 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1-2 horas</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $180K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80" alt="Puerto iPad" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reparación Puerto de Carga</h3>
+                            <p class="service-description">
+                                Solución a problemas de conexión Lightning con limpieza o sustitución.
+                            </p>
+                            <ul class="service-features">
+                                <li>Limpieza de conectores</li>
+                                <li>Reemplazo de flex completo</li>
+                                <li>Prueba de carga rápida</li>
+                                <li>Garantía de 30 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1-2 horas</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $120K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80" alt="Audio iPad" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reparación de Audio</h3>
+                            <p class="service-description">
+                                Cambio de parlantes estéreo, micrófono o jack de audio 3.5mm.
+                            </p>
+                            <ul class="service-features">
+                                <li>Parlantes de alta fidelidad</li>
+                                <li>Micrófonos de cancelación de ruido</li>
+                                <li>Prueba de audio espacial</li>
+                                <li>Garantía de 30 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1 hora</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $140K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATÁLOGO: MacBook -->
+    <div class="page categories-page">
+        <div class="categories-content">
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-info">
+                        <div class="category-icon">💻</div>
+                        <h2 class="category-title">Servicios MacBook</h2>
+                        <p class="category-description">
+                            Reparaciones especializadas para MacBook Air, Pro y modelos con chip M1/M2/M3. 
+                            Contamos con herramientas certificadas Apple y estación de microsoldadura avanzada.
+                        </p>
+                    </div>
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80" alt="MacBook reparación">
+                    </div>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80" alt="Pantalla MacBook" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Cambio de Pantalla Retina</h3>
+                            <p class="service-description">
+                                Sustitución de display Retina completo con calibración de color profesional.
+                            </p>
+                            <ul class="service-features">
+                                <li>Pantallas Retina True Tone</li>
+                                <li>Calibración P3 color space</li>
+                                <li>Flex cable premium</li>
+                                <li>Garantía de 90 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 3-5 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $1.2M
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=600&q=80" alt="Batería MacBook" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reemplazo de Batería</h3>
+                            <p class="service-description">
+                                Instalación de batería certificada con recalibración del sistema de energía.
+                            </p>
+                            <ul class="service-features">
+                                <li>Baterías originales Apple</li>
+                                <li>Hasta 10 horas de autonomía</li>
+                                <li>Reset SMC incluido</li>
+                                <li>Garantía de 90 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1 día</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $380K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&q=80" alt="Teclado MacBook" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Cambio de Teclado</h3>
+                            <p class="service-description">
+                                Reemplazo de teclado completo incluyendo Butterfly o Magic Keyboard.
+                            </p>
+                            <ul class="service-features">
+                                <li>Teclado retroiluminado original</li>
+                                <li>Touch Bar funcional (si aplica)</li>
+                                <li>Distribución español o inglés</li>
+                                <li>Garantía de 60 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 2-3 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $450K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&q=80" alt="Upgrade MacBook" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Actualización RAM/SSD</h3>
+                            <p class="service-description">
+                                Upgrade de memoria y almacenamiento para mejorar rendimiento significativamente.
+                            </p>
+                            <ul class="service-features">
+                                <li>SSD NVMe hasta 2TB</li>
+                                <li>RAM hasta 32GB (modelos aplicables)</li>
+                                <li>Clonado de datos incluido</li>
+                                <li>Optimización macOS</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1-2 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $300K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80" alt="Mantenimiento MacBook" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Limpieza Profunda + Pasta Térmica</h3>
+                            <p class="service-description">
+                                Mantenimiento preventivo completo con renovación térmica profesional.
+                            </p>
+                            <ul class="service-features">
+                                <li>Limpieza de ventiladores</li>
+                                <li>Pasta térmica Arctic MX-4</li>
+                                <li>Optimización de refrigeración</li>
+                                <li>Reduce temperaturas hasta 15°C</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 2-3 horas</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $120K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Placa lógica MacBook" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reparación Placa Lógica</h3>
+                            <p class="service-description">
+                                Diagnóstico y reparación avanzada de board con microsoldadura nivel 3.
+                            </p>
+                            <ul class="service-features">
+                                <li>Microscopio digital profesional</li>
+                                <li>Reballing de chips BGA</li>
+                                <li>Recuperación de datos críticos</li>
+                                <li>Garantía de 30 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 5-7 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $600K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATÁLOGO: Apple Watch -->
+    <div class="page categories-page">
+        <div class="categories-content">
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=800&q=80" alt="Apple Watch">
+                    </div>
+                    <div class="category-info">
+                        <div class="category-icon">⌚</div>
+                        <h2 class="category-title">Servicios Apple Watch</h2>
+                        <p class="category-description">
+                            Reparaciones especializadas para todos los modelos de Apple Watch, desde Series 3 hasta Ultra 2. 
+                            Expertos en reparaciones de precisión extrema.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80" alt="Pantalla Apple Watch" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Cambio de Pantalla</h3>
+                            <p class="service-description">
+                                Reemplazo de cristal y display OLED para todos los tamaños (38-49mm).
+                            </p>
+                            <ul class="service-features">
+                                <li>Pantallas OLED Always-On</li>
+                                <li>Recalibración Force Touch</li>
+                                <li>Sellado resistente al agua</li>
+                                <li>Garantía de 60 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 2-3 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $350K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&q=80" alt="Batería Apple Watch" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reemplazo de Batería</h3>
+                            <p class="service-description">
+                                Instalación de batería de alta capacidad para restaurar 18 horas de autonomía.
+                            </p>
+                            <ul class="service-features">
+                                <li>Baterías 200-500mAh certificadas</li>
+                                <li>Adhesivo térmico especializado</li>
+                                <li>Prueba de carga inalámbrica</li>
+                                <li>Garantía de 60 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 2-3 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $200K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1589492477829-5e65395b66cc?w=600&q=80" alt="Digital Crown" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Reparación Digital Crown</h3>
+                            <p class="service-description">
+                                Solución a problemas de corona digital con limpieza profunda o reemplazo.
+                            </p>
+                            <ul class="service-features">
+                                <li>Limpieza ultrasónica micro</li>
+                                <li>Lubricación especializada</li>
+                                <li>Prueba de feedback háptico</li>
+                                <li>Garantía de 30 días</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1-2 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $150K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1617043786394-f977fa12eddf?w=600&q=80" alt="Correas Apple Watch" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Venta de Correas Premium</h3>
+                            <p class="service-description">
+                                Amplia variedad de correas originales y compatibles de alta calidad.
+                            </p>
+                            <ul class="service-features">
+                                <li>Sport Band / Sport Loop</li>
+                                <li>Cuero genuino / Milanese</li>
+                                <li>Acero inoxidable / Titanio</li>
+                                <li>Ediciones especiales disponibles</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ Inmediato</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $80K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICIOS ADICIONALES -->
+    <div class="page categories-page">
+        <div class="categories-content">
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-info">
+                        <div class="category-icon">🔧</div>
+                        <h2 class="category-title">Servicios Adicionales</h2>
+                        <p class="category-description">
+                            Servicios complementarios de diagnóstico, software, protección y accesorios originales 
+                            para potenciar tu experiencia Apple.
+                        </p>
+                    </div>
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80" alt="Servicios adicionales">
+                    </div>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80" alt="Diagnóstico profesional" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Diagnóstico Profesional</h3>
+                            <p class="service-description">
+                                Evaluación técnica completa con informe detallado y asesoría especializada.
+                            </p>
+                            <ul class="service-features">
+                                <li>Prueba de todos los componentes</li>
+                                <li>Informe técnico digital</li>
+                                <li>Presupuesto sin compromiso</li>
+                                <li>Tiempo máximo 45 minutos</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 30-45 min</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $30K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?w=600&q=80" alt="Instalación software" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Instalación de Software</h3>
+                            <p class="service-description">
+                                Actualización o instalación limpia de iOS, iPadOS o macOS más reciente.
+                            </p>
+                            <ul class="service-features">
+                                <li>Respaldo completo de datos</li>
+                                <li>Instalación de última versión</li>
+                                <li>Configuración inicial personalizada</li>
+                                <li>Transferencia de información</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 2-3 horas</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $50K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80" alt="Liberación iCloud" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Liberación iCloud</h3>
+                            <p class="service-description">
+                                Servicio de desbloqueo de Activation Lock con documentación verificada.
+                            </p>
+                            <ul class="service-features">
+                                <li>Requiere prueba de propiedad</li>
+                                <li>Proceso 100% legal y seguro</li>
+                                <li>Documentación requerida</li>
+                                <li>Asesoría incluida</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 3-5 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Consultar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1544396821-4dd40b938ad3?w=600&q=80" alt="Recuperación datos" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Recuperación de Datos</h3>
+                            <p class="service-description">
+                                Extracción y respaldo de información de dispositivos dañados o inoperables.
+                            </p>
+                            <ul class="service-features">
+                                <li>Recuperación de fotos y videos</li>
+                                <li>Contactos y mensajes</li>
+                                <li>Documentos y aplicaciones</li>
+                                <li>Entrega en USB o nube</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 1-3 días</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $100K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&q=80" alt="Protección pantalla" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Protección de Pantalla Premium</h3>
+                            <p class="service-description">
+                                Instalación profesional de vidrio templado o protector hidrogel UV.
+                            </p>
+                            <ul class="service-features">
+                                <li>Vidrio templado 9H anti-impacto</li>
+                                <li>Instalación sin burbujas</li>
+                                <li>Limpieza especializada previa</li>
+                                <li>Garantía de instalación</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ 15 min</div>
+                                <div class="service-price">
+                                    <span class="price-from">Desde</span>
+                                    $25K
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80" alt="Accesorios Apple" class="service-image">
+                        <div class="service-content">
+                            <h3 class="service-name">Accesorios Originales Apple</h3>
+                            <p class="service-description">
+                                Amplio catálogo de accesorios certificados MFi con garantía oficial.
+                            </p>
+                            <ul class="service-features">
+                                <li>Cables Lightning/USB-C originales</li>
+                                <li>Cargadores 20W-140W MagSafe</li>
+                                <li>AirPods y fundas Apple</li>
+                                <li>Adaptadores y hubs certificados</li>
+                            </ul>
+                            <div class="service-details">
+                                <div class="service-time">⏱️ Inmediato</div>
+                                <div class="service-price">
+                                    <span class="price-from">Varios precios</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GARANTÍAS Y COMPROMISO -->
+    <div class="page warranty-page">
+        <div class="warranty-bg"></div>
+        <div class="warranty-content">
+            <h2 class="section-title">Nuestro Compromiso de Excelencia</h2>
+            <p class="section-subtitle">Respaldamos cada servicio con garantías reales y soporte técnico continuo</p>
+            
+            <div class="warranty-grid">
+                <div class="warranty-card">
+                    <div class="warranty-icon">🛡️</div>
+                    <h3 class="warranty-title">Garantía Total</h3>
+                    <p class="warranty-text">
+                        Todos nuestros servicios incluyen garantía escrita de 30 a 90 días según el tipo de reparación. 
+                        Trabajamos exclusivamente con repuestos de primera calidad y respaldamos cada trabajo realizado. 
+                        Si algo no funciona correctamente, lo arreglamos sin costo adicional.
+                    </p>
+                </div>
+                
+                <div class="warranty-card">
+                    <div class="warranty-icon">🎓</div>
+                    <h3 class="warranty-title">Técnicos Certificados</h3>
+                    <p class="warranty-text">
+                        Nuestro equipo cuenta con certificaciones oficiales y capacitación continua en las últimas 
+                        tecnologías Apple. Utilizamos herramientas especializadas de grado profesional y seguimos 
+                        protocolos internacionales para garantizar reparaciones de calidad premium.
+                    </p>
+                </div>
+                
+                <div class="warranty-card">
+                    <div class="warranty-icon">💎</div>
+                    <h3 class="warranty-title">Repuestos Premium</h3>
+                    <p class="warranty-text">
+                        Trabajamos exclusivamente con componentes originales Apple o calidad AAA+ certificada. 
+                        Cada parte es rigurosamente probada antes de la instalación para asegurar compatibilidad 
+                        total, durabilidad y rendimiento óptimo a largo plazo.
+                    </p>
+                </div>
+                
+                <div class="warranty-card">
+                    <div class="warranty-icon">🔒</div>
+                    <h3 class="warranty-title">Privacidad Asegurada</h3>
+                    <p class="warranty-text">
+                        Tu información personal está 100% protegida. Firmamos acuerdos de confidencialidad y 
+                        aplicamos protocolos estrictos de seguridad de datos durante todo el proceso. Tus fotos, 
+                        contactos y archivos están seguros con nosotros.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contact-section">
+                <h3 class="contact-title">¿Listo para Reparar tu Dispositivo Apple?</h3>
+                <p class="contact-subtitle">
+                    Visítanos, llámanos o escríbenos para una cotización personalizada sin compromiso
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div class="contact-label">Ubicación</div>
+                        <div class="contact-value">
+                            Centro Comercial XYZ<br>
+                            Local 123<br>
+                            Barrancabermeja, Santander
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div class="contact-label">WhatsApp / Celular</div>
+                        <div class="contact-value">
+                            +57 321 XXX XXXX<br>
+                            <span style="font-size: 1rem; color: var(--text-gray);">Respuesta inmediata</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">⏰</span>
+                        <div class="contact-label">Horario de Atención</div>
+                        <div class="contact-value">
+                            Lun - Vie: 9:00 AM - 7:00 PM<br>
+                            Sábados: 9:00 AM - 5:00 PM<br>
+                            <span style="font-size: 1rem; color: var(--text-gray);">Domingos cerrado</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-section">
+                    <p class="social-title">Síguenos en Redes Sociales</p>
+                    <div class="social-icons">
+                        <span title="Instagram"><a href="https://www.instagram.com/repairpro_oficial">📷</a></span>
+                        <span title="Facebook"><a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2FRepairProBarrancabermeja%3Fmibextid%3DLQQJ4d&e=AT16gwdEdoEXS2CZG8xaa0XPgVPUKt-tiNzli88tIJYBHNUsSrIYeeqg52mHYPAZ8kLOA2J7zhrxHfdcfJeDGrYYZ3nIl0Z6VM52x7w7Sg">📘</a></span>
+                        <span title="WhatsApp"><a href="https://l.instagram.com/?u=https%3A%2F%2Fapi.whatsapp.com%2Fsend%3Fphone%3D3045339492%26text%3DMe%2Binteresa%2Bsaber%2Bsobre%25E2%2580%25A6%26fbclid%3DPAZXh0bgNhZW0CMTEAAacd7hE29XnX0Y4vdXxwU8nvdv-K-kWYUxJmYafQ5Cu9bxiXPJzChLvL5wCs_w_aem_qCpqOYx01j30kaeAFsiSxg&e=AT2rguOyFgsL8PalDTZmlw37_MPtkt0oepEbITGPbh5aXpgQU_zIrf74VmHoAkP7oiTIh85wb-C678xwbDMFTokL9-OlfDQyQ0kNiMbZwQ">💬</a></span>
+                        <span title="TikTok"><a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.tiktok.com%2F%40repairpro_off%3F_t%3D8Zr18aaWKQg%26_r%3D1%26fbclid%3DPAZXh0bgNhZW0CMTEAAaeg8lCv5xYGmJUYY-7Tj1X6rhD8PN70PfcD5mNt5Xc5RawUr9wEB3ADOV89ng_aem_iEPU1SOACHDVocIZQAdZ4g&e=AT0Dc0YOxS8gCZbGjdMiVGJ68fWIZhr1VU992r36QggDoEmmM-bqBuXAo5gI_ebWvRBcftOHB3dH0Ci5DE06rw5Xhv6ixvs-MC_shbhsQg">🎵</a></span>
+                    </div>
+                    <p style="margin-top: 30px; font-size: 1rem; color: var(--text-gray);">
+                        @repairpro_oficial
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA FINAL -->
+    <div class="page final-page">
+        <div class="final-bg"></div>
+        <div class="final-content fade-in">
+            <div class="logo-cover" style="margin-bottom: 50px;">
+                <span class="logo-repair">repair</span><span class="logo-pro">pro</span>
+            </div>
+            
+            <p style="font-size: 2rem; color: var(--text-light); margin-bottom: 30px; font-weight: 300; line-height: 1.6;">
+                Experiencia Apple.<br>
+                Confianza Colombiana.<br>
+                Resultados Garantizados.
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Años de<br>Experiencia</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8K+</div>
+                    <div class="stat-label">Dispositivos<br>Reparados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Clientes<br>Satisfechos</div>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.2rem; color: var(--text-gray); margin: 60px 0 40px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.9;">
+                Más de medio década devolviendo la vida útil a dispositivos Apple en Barrancabermeja. 
+                Miles de clientes satisfechos respaldan nuestra calidad, profesionalismo y compromiso. 
+                Tu dispositivo merece el mejor servicio técnico.
+            </p>
+            
+            <div class="specialty-badge" style="margin: 60px 0;">
+                <span>🏆</span>
+                <span>TU ALIADO TECNOLÓGICO DE CONFIANZA</span>
+            </div>
+            
+            <div style="margin-top: 100px; padding-top: 60px; border-top: 1px solid rgba(59, 130, 246, 0.2);">
+                <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 15px;">
+                    © 2024 RepairPro Barrancabermeja - Todos los derechos reservados
+                </p>
+                <p style="font-size: 0.85rem; color: #4b5563; margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Apple, iPhone, iPad, MacBook, Apple Watch y todos los productos Apple mencionados 
+                    son marcas registradas de Apple Inc. RepairPro es un centro de servicio independiente 
+                    no afiliado oficialmente a Apple Inc.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Intersection Observer para animaciones
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos
+        document.querySelectorAll('.service-card, .value-card, .warranty-card, .category-header').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Parallax suave en imágenes
+        const parallaxImages = document.querySelectorAll('.category-image img, .intro-image img');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            parallaxImages.forEach((img, index) => {
+                const speed = 0.05 + (index * 0.01);
+                const yPos = -(scrolled * speed);
+                img.style.transform = `translateY(${yPos}px) scale(1.1)`;
+            });
+        });
+
+        // Smooth scroll para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efecto hover mejorado en cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animación de números en estadísticas
+        const animateNumbers = () => {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                const increment = target / 50;
+                let current = 0;
+                
+                const updateNumber = () => {
+                    current += increment;
+                    if (current < target) {
+                        stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '') + (stat.textContent.includes('%') ? '%' : '');
+                        setTimeout(updateNumber, 30);
+                    } else {
+                        stat.textContent = target + (stat.textContent.includes('+') ? '+' : '') + (stat.textContent.includes('%') ? '%' : '');
+                    }
+                };
+                
+                const statsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateNumber();
+                            statsObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                statsObserver.observe(stat);
+            });
+        };
+
+        animateNumbers();
+
+        // Mejorar rendimiento de imágenes lazy
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.loading = 'lazy';
+            });
+        }
+    </script>
+</body>
+</html>
